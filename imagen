@@ -1,0 +1,1 @@
+<img src="/web/image/res.company/${object.company_id.id}/logo" style="width:64px;height: 64px; object-fit: contain;" alt="Product image">
