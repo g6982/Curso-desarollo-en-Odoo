@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id="calendar_event_appointment_leads_form_view" model="ir.ui.view">
+           <field name="name">calendar.event.appointment.leads.form.view</field>
+           <field name="model">calendar.event</field>
+           <field name="inherit_id" ref="studio_customization.odoo_studio_calendar_d90fd3b4-8377-4f8f-af50-9b83a2cd6446"/>
+           <field name="arch" type="xml">
+               <xpath expr="//group[@name='studio_group_e04OI_left']" position="inside">
+                   <field name="x_personal_schedule_appointment"/>
+               </xpath>
+           </field>
+       </record>
+    </data>
+</odoo>

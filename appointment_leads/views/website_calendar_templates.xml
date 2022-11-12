@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="p_email_error" name="Website Appointment: Email Error">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_website_calendar mt-4">
+                <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger">
+                                    <h2>El correo que ingresaste ya está registrado.</h2>
+                                    <p>
+                                        <a t-attf-href="/web/login?redirect={{ quote_plus(return_url) }}&amp;login={{ quote_plus(email) }}">inicia sesión</a> para poder continuar con la cita.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
