@@ -72,6 +72,8 @@ class WebsiteCalendarController(WebsiteCalendar):
     def calendar_appointment_view(self, access_token, edit=False, message=False, **kwargs):
         res = super(WebsiteCalendarController, self).calendar_appointment_view(access_token, edit, message, **kwargs)
 
+        return res # Ajuste temporal para evitar que el email se envie
+
         event = request.env['calendar.event'].sudo().search([('access_token', '=', access_token)], limit=1)
 
         # Crea un usuario para quien agendó la cita en caso de que sea su primera cita
@@ -82,6 +84,8 @@ class WebsiteCalendarController(WebsiteCalendar):
                 user_domain = ['|', ('login', '=like', partner.email), ('email', '=like', partner.email)]
 
                 if not request.env['res.users'].sudo().search(user_domain):
+                    # Crea y dispara la acción para enviar el correo de primer
+                    # acceso al portal
                     portal_wizard = request.env['portal.wizard'].sudo().create({
                         'user_ids': [(0, 0, {
                             'partner_id': partner.id,
@@ -91,4 +95,8 @@ class WebsiteCalendarController(WebsiteCalendar):
                     })
 
                     portal_wizard.action_apply()
+
+                    res.qcontext.update({
+                        'partner_invite_email': partner.email,
+                    })
         return res

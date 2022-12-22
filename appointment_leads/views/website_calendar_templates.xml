@@ -20,4 +20,12 @@
             </div>
         </t>
     </template>
+
+    <template id="appointment_validated" inherit_id="website_calendar.appointment_validated">
+        <xpath expr="//div[hasclass('oe_structure')]/div[@role='status']" position="inside">
+            <p t-if="partner_invite_email" style="font-size: 1rem">
+                Te hemos enviado una invitación a <i t-esc="partner_invite_email"/> para que puedas ingresar a tu portal de Piédica.
+            </p>
+        </xpath>
+    </template>
 </odoo>
